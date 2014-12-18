@@ -1,19 +1,21 @@
-import org.apache.spark.SparkContext
+import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.spark.SparkContext._
 
 object FirstNWords {
   def main(args: Array[String]): Unit = {
     val logFile = "src/main/resources/README.md"
-    val sc = new SparkContext("local", "First N Words")
+    val sparkConf = new SparkConf().setAppName("First N Words")
+    val sc = new SparkContext(sparkConf)
 
-    val wc = sc.textFile(logFile, 2)
+    sc.textFile(logFile, 2)
       .flatMap(_.split("\\s+"))
       .filter(_.trim.length > 0)
       .map((_, 1))
       .reduceByKey(_ + _)
-      .map(v => (v._2, v._1))
-      .top(10)
-
-    wc.foreach(println)
+      .top(10)(tupleOrdering).foreach(println)
   }
+}
+
+object tupleOrdering extends Ordering[(String,Int)] {
+  override def compare(x: (String,Int), y: (String,Int)): Int = x._2.compare(y._2)
 }
