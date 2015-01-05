@@ -1,4 +1,4 @@
-import org.apache.spark.SparkContext
+import org.apache.spark.{SparkConf, SparkContext}
 
 /**
  * Created by gsantoro on 17/12/14.
@@ -8,7 +8,8 @@ object Teenagers {
 
   def main(args: Array[String]) {
     val peopleFile = "src/main/resources/people.txt"
-    val sc = new SparkContext("local", "Adolescent")
+    val sparkConf = new SparkConf().setAppName("Teenagers")
+    val sc = new SparkContext(sparkConf)
 
     val sqlContext = new org.apache.spark.sql.SQLContext(sc)
     import sqlContext.createSchemaRDD
