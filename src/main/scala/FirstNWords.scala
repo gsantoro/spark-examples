@@ -1,5 +1,4 @@
 import org.apache.spark.{SparkConf, SparkContext}
-import org.apache.spark.SparkContext._
 
 object FirstNWords {
   def main(args: Array[String]): Unit = {
