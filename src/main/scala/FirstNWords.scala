@@ -3,7 +3,7 @@ import org.apache.spark.{SparkConf, SparkContext}
 object FirstNWords {
   def main(args: Array[String]): Unit = {
     val logFile = "src/main/resources/README.md"
-    val sparkConf = new SparkConf().setAppName("First N Words")
+    val sparkConf = new SparkConf()
     val sc = new SparkContext(sparkConf)
 
     sc.textFile(logFile, 2)
