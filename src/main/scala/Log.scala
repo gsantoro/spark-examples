@@ -1,13 +1,13 @@
 import org.apache.spark.{SparkConf, SparkContext}
 
 /**
- * Created by gsantoro on 05/01/15.
- */
+  * Created by gsantoro on 05/01/15.
+  */
 object Log {
   def main(args: Array[String]) {
     val sparkConf = new SparkConf().setAppName("Log")
     val sc = new SparkContext(sparkConf)
-    
+
     // base RDD
     val lines = sc.textFile("src/main/resources/log.txt")
 
@@ -19,8 +19,9 @@ object Log {
     // actions
     val mysqlErrors = messages.filter(_.contains("mysql")).count()
     println(s"MySql errors: $mysqlErrors")
-    
-    val phpErrors =  messages.filter(_.contains("php")).count()
+
+    val phpErrors = messages.filter(_.contains("php")).count()
     println(s"Php errors: $phpErrors")
+
   }
 }

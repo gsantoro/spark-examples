@@ -16,10 +16,11 @@ object Grep {
 
         val result = sc.textFile(config.input)
           .repartition(config.partitions)
-          .map { s =>
-            regex.findAllIn(s).matchData.map(m => m.group(1)).mkString(" --- ")
+          .flatMap { s =>
+            regex.findAllIn(s).matchData.map(m => m.group(1))
           }
           .filter(!_.isEmpty)
+          .distinct()
 
         if (config.debug) {
           result.foreach(println)
