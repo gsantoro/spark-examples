@@ -6,7 +6,6 @@ import org.joda.time.Duration
 import org.joda.time.format.PeriodFormatterBuilder
 
 object Utils {
-
   def time(execution: () => Unit): Unit = {
     val start = System.currentTimeMillis()
 
@@ -28,5 +27,4 @@ object Utils {
     val formatted = formatter.print(duration.toPeriod())
     println(s"Execution time: $formatted")
   }
-
 }

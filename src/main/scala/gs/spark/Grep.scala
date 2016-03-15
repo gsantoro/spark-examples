@@ -1,33 +1,28 @@
 package gs.spark
 
-import gs.spark.util.SparkConfigParser
+import gs.spark.util.{SparkJobs, DefaultConfigParser}
 import gs.spark.util.gs.spark.util.Utils
-import org.apache.spark.{SparkConf, SparkContext}
+import org.apache.spark.rdd.RDD
+
+import scala.util.matching.Regex
 
 object Grep {
+  def grepRegex(regex: Regex)(input: RDD[String]): RDD[String] = {
+    input
+      .flatMap { s =>
+        regex.findAllIn(s).matchData.map(m => m.group(1))
+      }
+      .filter(!_.isEmpty)
+      .distinct()
+  }
+
   def main(args: Array[String]) {
     val appName = "distributed grep"
     val regex = "externalLink=\"(.*?)\"".r
 
-    SparkConfigParser.parse(args, appName, (config) => {
+    DefaultConfigParser.parse(args, appName, (config) => {
       Utils.time(() => {
-        val sparkConf = new SparkConf().setAppName(appName)
-        val sc = new SparkContext(sparkConf)
-
-        val result = sc.textFile(config.input)
-          .repartition(config.partitions)
-          .flatMap { s =>
-            regex.findAllIn(s).matchData.map(m => m.group(1))
-          }
-          .filter(!_.isEmpty)
-          .distinct()
-
-        if (config.debug) {
-          result.foreach(println)
-        }
-        else {
-          result.saveAsTextFile(config.output)
-        }
+        SparkJobs.stringSparkJob(appName, config, grepRegex(regex))
       })
     })
   }
