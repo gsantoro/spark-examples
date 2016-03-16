@@ -11,13 +11,15 @@ import org.elasticsearch.common.transport.InetSocketTransportAddress
   */
 object DatabasesUtils {
   implicit class ESUtil[T](val rdd: RDD[(String, T)]) {
+    //NOTE: USE client.transport.ignore_cluster_name IN THE ES CONFIG
+
     def saveToES(conf: Map[String, String]): Unit = {
       rdd.foreachPartition { partition =>
         if (partition.nonEmpty) {
           val client = TransportClient.builder().build()
             .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(conf("host")), conf("port").toInt))
 
-          //NOTE: this is for version ES 1.6 (before 2.0)
+          //NOTE: this is for version ES 1.6
 //          val client = new TransportClient()
 //            .addTransportAddress(new InetSocketTransportAddress(conf("host"), conf("port").toInt))
 

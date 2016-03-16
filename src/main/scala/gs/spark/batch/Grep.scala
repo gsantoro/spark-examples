@@ -1,7 +1,7 @@
-package gs.spark
+package gs.spark.batch
 
-import gs.spark.util.{SparkJobs, DefaultConfigParser}
 import gs.spark.util.gs.spark.util.Utils
+import gs.spark.util.{DefaultConfigParser, SparkJobs}
 import org.apache.spark.rdd.RDD
 
 import scala.util.matching.Regex

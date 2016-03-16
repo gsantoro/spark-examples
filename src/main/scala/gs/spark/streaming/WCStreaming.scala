@@ -1,5 +1,6 @@
+package gs.spark.streaming
+
 import org.apache.spark.SparkConf
-import org.apache.spark.streaming.StreamingContext._
 import org.apache.spark.streaming._
 /**
  * Created by gsantoro on 17/12/14.
@@ -18,7 +19,7 @@ object WCStreaming {
       serverPort = args(1).trim.toInt
     }
 
-    val sparkConf = new SparkConf().setAppName("WCStreaming")
+    val sparkConf = new SparkConf().setAppName("WCStreaming").setMaster("local[*]")
     val ssc = new StreamingContext(sparkConf, Seconds(10))
 
     val lines = ssc.socketTextStream(serverIP, serverPort)

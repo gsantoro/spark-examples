@@ -1,3 +1,5 @@
+package gs.spark.batch
+
 import org.apache.spark.{SparkConf, SparkContext}
 
 object FirstNWords {

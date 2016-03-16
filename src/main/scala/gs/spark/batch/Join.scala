@@ -1,6 +1,7 @@
+package gs.spark.batch
+
 
 import org.apache.spark.{SparkConf, SparkContext}
-import org.apache.spark.SparkContext._
 
 /**
  * Created by gsantoro on 05/01/15.
