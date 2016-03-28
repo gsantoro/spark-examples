@@ -21,7 +21,7 @@ object Grep {
     val regex = "externalLink=\"(.*?)\"".r
 
     DefaultConfigParser.parse(args, appName, (config) => {
-      Utils.time(() => {
+      Utils.time(execution = () => {
         SparkJobs.stringSparkJob(appName, config, grepRegex(regex))
       })
     })

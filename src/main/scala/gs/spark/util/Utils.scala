@@ -6,7 +6,7 @@ import org.joda.time.Duration
 import org.joda.time.format.PeriodFormatterBuilder
 
 object Utils {
-  def time(execution: () => Unit): Unit = {
+  def time(message: String = "", execution: () => Unit): Unit = {
     val start = System.currentTimeMillis()
 
     execution()
@@ -14,7 +14,7 @@ object Utils {
     val end = System.currentTimeMillis()
 
     val duration = new Duration(end - start)
-    val formatter = new PeriodFormatterBuilder()
+    val timeFormatter = new PeriodFormatterBuilder()
       .appendDays()
       .appendSuffix("d")
       .appendHours()
@@ -23,8 +23,14 @@ object Utils {
       .appendSuffix("m")
       .appendSeconds()
       .appendSuffix("s")
+      .appendMillis()
+      .appendSuffix("sss")
       .toFormatter()
-    val formatted = formatter.print(duration.toPeriod())
-    println(s"Execution time: $formatted")
+    val formattedTime = timeFormatter.print(duration.toPeriod())
+
+    if (message.isEmpty)
+      println(s"Execution time: $formattedTime")
+    else
+      println(s"$message in $formattedTime")
   }
 }
