@@ -1,0 +1,1 @@
+{"header":{"timestamp":"${timestamp.asText()}","eventType":"${eventType.asText()}"},"uuid":"${uuid.asText()}","country":"${country.asText()}","channel":"${channel.asText()}"}

@@ -1,0 +1,54 @@
+[
+  {
+    "name": "timestamp",
+    "class": "event",
+    "format": "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+    "start": "2016-03-01T00:00:00.000Z",
+    "rate": "0.000011574/s"
+  },
+  {
+    "name": "eventType",
+    "class": "string",
+    "dist": {
+      "Stackoverflow": 1,
+      "Other": 2
+    }
+  },
+  {
+    "name": "country",
+    "class": "string",
+    "dist": {
+      "MT": 1,
+      "GB": 3,
+      "SE": 4,
+      "IT": 2
+    }
+  },
+  {
+    "name": "channel",
+    "class": "string",
+    "dist": {
+      "WEB": 0.5,
+      "PHONE": 0.5
+    }
+  },
+  {
+    "name": "uuid",
+    "class": "uuid"
+  },
+  {
+    "name": "currency",
+    "class": "string",
+    "dist": {
+      "SEK": 1,
+      "EUR": 3,
+      "GBP": 4
+    }
+  },
+  {
+    "name": "amount",
+    "class": "int",
+    "min": 10,
+    "max": 9999
+  }
+]

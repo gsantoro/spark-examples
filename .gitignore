@@ -1,7 +1,10 @@
 
 dependency-reduced-pom.xml
 target
+/log
 **/remote
+src/main/resources/*/*/output
+side-log
 
 ### JetBrains template
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio
