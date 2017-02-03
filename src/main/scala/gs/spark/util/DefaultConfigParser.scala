@@ -3,9 +3,9 @@ package gs.spark.util
 import scopt.OptionParser
 
 class DefaultConfigParser {
-  def parse(args: Array[String], app: String = "", process: (DefaultConfig) => Unit) = {
-    val parser = new OptionParser[DefaultConfig](app) {
-      head(app, "0.0.1")
+  def parse(args: Array[String], appName: String = "", v: String = "0.0.1", process: (DefaultConfig) => Unit) = {
+    val parser = new OptionParser[DefaultConfig](appName) {
+      head(appName, v)
       opt[String]('i', "input") required() valueName "<input>" action { (x, c) =>
         c.copy(input = x)
       } text "(required) where to read from"

@@ -6,10 +6,10 @@ import org.joda.time.Duration
 import org.joda.time.format.PeriodFormatterBuilder
 
 object Utils {
-  def time(message: String = "", execution: () => Unit): Unit = {
+  def time(message: String = "", process: () => Unit): Unit = {
     val start = System.currentTimeMillis()
 
-    execution()
+    process()
 
     val end = System.currentTimeMillis()
 
