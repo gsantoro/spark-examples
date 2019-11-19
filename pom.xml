@@ -17,7 +17,7 @@
 
     <properties>
         <scala.version>2.10.5</scala.version>
-        <spark.version>1.6.0</spark.version>
+        <spark.version>2.2.3</spark.version>
         <scala.scope>compile</scala.scope>
         <spark.scope>compile</spark.scope>
         <!--<scala.scope>provided</scala.scope>-->
